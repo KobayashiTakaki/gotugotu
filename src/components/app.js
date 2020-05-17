@@ -123,6 +123,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <ShareButton result={ resultText(this.state.data) }/>
       </div>
     )
   }
@@ -266,6 +267,28 @@ const splitWord = (word) => {
 
 const filterKana = (string) => {
   return string.replace(/[^あ-んア-ンー]/g, '')
+}
+
+const resultText = (data) => {
+  return (
+    data[1].word.replace(new RegExp(data[1].charactor, 'g'), data[2].charactor) +
+    data[2].word.replace(new RegExp(data[2].charactor, 'g'), data[1].charactor)
+  )
+}
+
+const ShareButton = (props) => {
+  console.log(props.result)
+  return (
+    <div className='tweet-button'>
+      <a
+        className="twitter-share-button"
+        href="https://twitter.com/intent/tweet"
+        data-text={ props.result }
+      >
+        Tweet
+      </a>
+    </div>
+  )
 }
 
 export default App
