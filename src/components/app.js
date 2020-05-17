@@ -40,7 +40,7 @@ class App extends React.Component {
                     onChange={ (e) => this.handleWordChange(e, 1) }
                   />
                 </div>
-                <div className='form-row mb-2 input-form__charactor1'>
+                <div className='form-row mb-2 input-form__charactor'>
                   <div className='col'>
                     <CharactorSelect
                       word={ this.state.data[1].word }
@@ -61,7 +61,7 @@ class App extends React.Component {
                     onChange={ (e) => this.handleWordChange(e, 2) }
                   />
                 </div>
-                <div className='form-row mb-2 input-form__charactor1'>
+                <div className='form-row mb-2 input-form__charactor'>
                   <div className='col text-center col-form-label'>
                     <span>←交換</span>
                   </div>
