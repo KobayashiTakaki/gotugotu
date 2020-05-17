@@ -39,7 +39,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve('./index.html'),
+      inject: true,
+      template: path.resolve('./index.html')
     })
   ],
   devServer: {
