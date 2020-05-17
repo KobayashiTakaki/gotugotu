@@ -264,7 +264,7 @@ const splitWord = (word) => {
 }
 
 const filterKana = (string) => {
-  return string.replace(/[^あ-んア-ンー]/g, '')
+  return string.replace(/[^あ-んア-ンー〜]/g, '')
 }
 
 const resultText = (data) => {
