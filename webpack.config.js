@@ -3,9 +3,9 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve('./dist'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/build/'
   },
   devtool: 'inline-soruce-map',
   module: {
