@@ -287,7 +287,7 @@ const TweetButton = (props) => {
         ) + '%23' + encodeURI('ゴツゴツのアハン')
       }
     >
-      <i class="fab fa-twitter"></i><span>Tweet</span>
+      <i className="fab fa-twitter"></i><span>Tweet</span>
     </a>
   )
 }
