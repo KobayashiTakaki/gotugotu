@@ -46,14 +46,14 @@ class App extends React.Component {
                   />
                 </div>
                 <div className='form-row mb-2 input-form__charactor'>
-                  <div className='col'>
+                  <div className='col-7'>
                     <CharactorSelect
                       word={ this.state.data[1].word }
                       onChange={ (e) => this.handleCharactorChange(e, 1) }
                       value={ this.state.data[1].charactor }
                     />
                   </div>
-                  <div className='col text-center col-form-label'>
+                  <div className='col-5 text-center col-form-label'>
                     <span>交換→</span>
                   </div>
                 </div>
@@ -88,10 +88,10 @@ class App extends React.Component {
                   />
                 </div>
                 <div className='form-row mb-2 input-form__charactor'>
-                  <div className='col text-center col-form-label'>
+                  <div className='col-5 text-center col-form-label'>
                     <span>←交換</span>
                   </div>
-                  <div className='col'>
+                  <div className='col-7'>
                     <CharactorSelect
                       word={ this.state.data[2].word }
                       onChange={ (e) => this.handleCharactorChange(e, 2) }
