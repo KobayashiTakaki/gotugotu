@@ -24,10 +24,6 @@ class App extends React.Component {
     }
   }
 
-  componentWillUpdate() {
-    console.log(this.state)
-  }
-
   render() {
     return (
       <div className="container mt-3">
@@ -283,7 +279,13 @@ const TweetButton = (props) => {
     <a
       target='_blank'
       rel='nofollow noopener'
-      href={'https://twitter.com/intent/tweet?text=' + resultText(props.data) + ' ' + window.location }
+      href={
+        encodeURI(
+          'https://twitter.com/intent/tweet?text=' +
+          resultText(props.data) +
+          ' ' + window.location + '\n'
+        ) + '%23' + encodeURI('ゴツゴツのアハン')
+      }
     >
       <i class="fab fa-twitter"></i><span>Tweet</span>
     </a>
