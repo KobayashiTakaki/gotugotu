@@ -1,0 +1,49 @@
+.site-title {
+  line-height: 0.8;
+  span {
+    font-size: 15px;
+  }
+}
+
+.result {
+  border: solid 1px #aaa;
+  border-radius: 8px;
+  font-weight: bold;
+  max-width: 400px;
+
+  &__text1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 28px;
+    span {
+      padding: 0 12px;
+    }
+  }
+
+  &__text2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 40px;
+    span {
+      padding: 0 12px;
+    }
+  }
+}
+
+.input-form {
+  &__title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__charactor1 {
+    justify-content: space-around;
+  }
+
+  &__charactor2 {
+    justify-content: space-around;
+  }
+}
