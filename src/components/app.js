@@ -35,8 +35,8 @@ class App extends React.Component {
           <div className="col-md-8">
             <h2 className="mb-3 site-title">ゴツゴツのアハン<br /><span>ジェネレーター</span></h2>
             <Result data={ this.state.data }/>
-            <div className='row input-form'>
-              <div className='col-6 mb-3'>
+            <div className='row input-form mb-2'>
+              <div className='col-6'>
                 <p className='input-form__title'>単語1</p>
                 <div className='mb-2'>
                   <WordSelect
@@ -58,7 +58,7 @@ class App extends React.Component {
                   </div>
                 </div>
                 <form
-                  className='form-row mb-2 input-form__charactor'
+                  className='form-row input-form__charactor'
                   onSubmit={ (e) => this.handleWordSubmit(e, 1) }
                 >
                   <div className='col-sm-9 mb-2'>
@@ -100,7 +100,7 @@ class App extends React.Component {
                   </div>
                 </div>
                 <form
-                  className='form-row mb-2 input-form__charactor'
+                  className='form-row input-form__charactor'
                   onSubmit={ (e) => this.handleWordSubmit(e, 2) }
                 >
                   <div className='col-sm-9 mb-2'>
@@ -121,9 +121,11 @@ class App extends React.Component {
                 </form>
               </div>
             </div>
+            <div className='tweet-button mb-2'>
+              <TweetButton data={ this.state.data }/>
+            </div>
           </div>
         </div>
-        <ShareButton result={ resultText(this.state.data) }/>
       </div>
     )
   }
@@ -276,18 +278,15 @@ const resultText = (data) => {
   )
 }
 
-const ShareButton = (props) => {
-  console.log(props.result)
+const TweetButton = (props) => {
   return (
-    <div className='tweet-button'>
-      <a
-        className="twitter-share-button"
-        href="https://twitter.com/intent/tweet"
-        data-text={ props.result }
-      >
-        Tweet
-      </a>
-    </div>
+    <a
+      target='_blank'
+      rel='nofollow noopener'
+      href={'https://twitter.com/intent/tweet?text=' + resultText(props.data) + ' ' + window.location }
+    >
+      <i class="fab fa-twitter"></i><span>Tweet</span>
+    </a>
   )
 }
 
