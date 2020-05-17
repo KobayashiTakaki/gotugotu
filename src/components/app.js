@@ -249,11 +249,11 @@ const Result = (props) => {
 }
 
 const splitWord = (word) => {
-  const youon = ['ゃ', 'ゅ', 'ょ', 'ャ', 'ュ', 'ョ']
+  const youon = /[ぁぃぅぇぉっゃゅょァィゥェォッャュョ]/
   return [...word].map((e, i, array) => {
-      if(youon.includes(array[i])) {
+      if(array[i].match(youon)) {
         return
-      } else if(i == array.length || !youon.includes(array[i + 1])) {
+      } else if(i == array.length - 1 || !array[i + 1].match(youon)) {
         return e
       } else {
         return e + array[i + 1]
