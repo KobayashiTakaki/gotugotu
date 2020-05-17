@@ -9,12 +9,16 @@ class App extends React.Component {
     this.state = {
       data: {
         1: {
+          words: WORDS1,
           word: WORDS1[0],
-          charactor: WORDS1[0][0]
+          charactor: WORDS1[0][0],
+          wordInput: ''
         },
         2: {
+          words: WORDS2,
           word: WORDS2[0],
-          charactor: WORDS2[0][0]
+          charactor: WORDS2[0][0],
+          wordInput: ''
         }
       }
     }
@@ -36,8 +40,9 @@ class App extends React.Component {
                 <p className='input-form__title'>単語1</p>
                 <div className='mb-2'>
                   <WordSelect
-                    words={ WORDS1 }
+                    words={ this.state.data[1].words }
                     onChange={ (e) => this.handleWordChange(e, 1) }
+                    value={ this.state.data[1].word }
                   />
                 </div>
                 <div className='form-row mb-2 input-form__charactor'>
@@ -52,13 +57,34 @@ class App extends React.Component {
                     <span>交換→</span>
                   </div>
                 </div>
+                <form
+                  className='form-row mb-2 input-form__charactor'
+                  onSubmit={ (e) => this.handleWordSubmit(e, 1) }
+                >
+                  <div className='col-sm-9 mb-2'>
+                    <input
+                      type='text'
+                      className='form-control'
+                      value={ this.state.data[1].wordInput }
+                      onChange={ (e) => this.handleTextInput(e, 1) }
+                    />
+                  </div>
+                  <div className='col-sm-3 col-form-label'>
+                    <input
+                      type='submit'
+                      value='追加'
+                      className='btn btn-secondary btn-sm'
+                    />
+                  </div>
+                </form>
               </div>
               <div className='col-6'>
                 <p className='input-form__title'>単語2</p>
                 <div className='mb-2'>
                   <WordSelect
-                    words={ WORDS2 }
+                    words={ this.state.data[2].words }
                     onChange={ (e) => this.handleWordChange(e, 2) }
+                    value={ this.state.data[2].word }
                   />
                 </div>
                 <div className='form-row mb-2 input-form__charactor'>
@@ -73,6 +99,26 @@ class App extends React.Component {
                     />
                   </div>
                 </div>
+                <form
+                  className='form-row mb-2 input-form__charactor'
+                  onSubmit={ (e) => this.handleWordSubmit(e, 2) }
+                >
+                  <div className='col-sm-9 mb-2'>
+                    <input
+                      type='text'
+                      className='form-control'
+                      value={ this.state.data[2].wordInput }
+                      onChange={ (e) => this.handleTextInput(e, 2) }
+                    />
+                  </div>
+                  <div className='col-sm-3 col-form-label'>
+                    <input
+                      type='submit'
+                      value='追加'
+                      className='btn btn-secondary btn-sm'
+                    />
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -86,8 +132,10 @@ class App extends React.Component {
     Object.keys(this.state.data).forEach((key) => {
       if(key == updateKey) {
         newData[key] = {
+          words: this.state.data[key].words,
           word: event.target.value,
-          charactor: splitWord(event.target.value)[0]
+          charactor: splitWord(event.target.value)[0],
+          wordInput: this.state.data[key].wordInput
         }
       } else {
         newData[key] = this.state.data[key]
@@ -101,8 +149,52 @@ class App extends React.Component {
     Object.keys(this.state.data).forEach((key) => {
       if(key == updateKey) {
         newData[key] = {
+          words: this.state.data[key].words,
           word: this.state.data[key].word,
-          charactor: event.target.value
+          charactor: event.target.value,
+          wordInput: this.state.data[key].wordInput
+        }
+      } else {
+        newData[key] = this.state.data[key]
+      }
+    })
+    this.setState({ data: newData })
+  }
+
+  handleTextInput(event, updateKey) {
+    const newData = {}
+    Object.keys(this.state.data).forEach((key) => {
+      if(key == updateKey) {
+        newData[key] = {
+          words: this.state.data[key].words,
+          word: this.state.data[key].word,
+          charactor: this.state.data[key].charactor,
+          wordInput: event.target.value
+        }
+      } else {
+        newData[key] = this.state.data[key]
+      }
+    })
+    this.setState({ data: newData })
+  }
+
+  handleWordSubmit(_event, updateKey) {
+    event.preventDefault()
+    const newData = {}
+    const newWord = filterKana(this.state.data[updateKey].wordInput)
+    Object.keys(this.state.data).forEach((key) => {
+      if(key == updateKey) {
+        newData[key] = {
+          words:
+            newWord.length == 0 || this.state.data[key].words.includes(newWord) ?
+              this.state.data[key].words : this.state.data[key].words.concat([newWord]),
+          word:
+            newWord.length == 0 || this.state.data[key].words.includes(newWord) ?
+            this.state.data[key].word : newWord,
+          charactor:
+            newWord.length == 0 || this.state.data[key].words.includes(newWord) ?
+              this.state.data[key].charactor : splitWord(newWord)[0],
+          wordInput: ''
         }
       } else {
         newData[key] = this.state.data[key]
@@ -170,6 +262,10 @@ const splitWord = (word) => {
     })
     .filter((e) => { return e })
     .filter((e, i, self) => self.indexOf(e) === i)
+}
+
+const filterKana = (string) => {
+  return string.replace(/[^あ-んア-ンー]/g, '')
 }
 
 export default App
