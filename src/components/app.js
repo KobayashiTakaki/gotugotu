@@ -90,10 +90,7 @@ class App extends React.Component {
           charactor: splitWord(event.target.value)[0]
         }
       } else {
-        newData[key] = {
-          word: this.state.data[key].word,
-          charactor: this.state.data[key].charactor
-        }
+        newData[key] = this.state.data[key]
       }
     })
     this.setState({ data: newData })
@@ -108,10 +105,7 @@ class App extends React.Component {
           charactor: event.target.value
         }
       } else {
-        newData[key] = {
-          word: this.state.data[key].word,
-          charactor: this.state.data[key].charactor
-        }
+        newData[key] = this.state.data[key]
       }
     })
     this.setState({ data: newData })
