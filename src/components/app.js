@@ -271,17 +271,17 @@ const filterKana = (string) => {
   return string.replace(/[^ぁ-んァ-ンー〜!！?？]/g, '')
 }
 
-const resultText = (data) => {
-  return (
-    data[1].word.replace(new RegExp(data[1].charactor, 'g'), data[2].charactor) +
-    data[2].word.replace(new RegExp(data[2].charactor, 'g'), data[1].charactor)
-  )
+const resultTexts = (data) => {
+  return [
+      data[1].word.replace(new RegExp(data[1].charactor, 'g'), data[2].charactor),
+      data[2].word.replace(new RegExp(data[2].charactor, 'g'), data[1].charactor)
+    ]
 }
 
 const TweetButton = (props) => {
   const text =
     props.data[1].word + '%2B' + props.data[2].word + '%0A↓%0A' +
-    resultText(props.data) + '%0A' + window.location + '%0A%23ゴツゴツのアハン'
+    resultTexts(props.data).join('%20') + '%0A' + window.location + '%0A%23ゴツゴツのアハン'
   return (
     <a
       target='_blank'
