@@ -181,18 +181,21 @@ class App extends React.Component {
     event.preventDefault()
     const newData = {}
     const newWord = filterKana(this.state.data[updateKey].wordInput)
+    const charactors = splitWord(newWord)
+    const addFlg =
+      !newWord.length == 0 &&
+      !charactors.length == 0 &&
+      !this.state.data[updateKey].words.includes(newWord)
     Object.keys(this.state.data).forEach((key) => {
       if(key == updateKey) {
         newData[key] = {
           words:
-            newWord.length == 0 || this.state.data[key].words.includes(newWord) ?
-              this.state.data[key].words : this.state.data[key].words.concat([newWord]),
+            addFlg ?
+              this.state.data[key].words.concat([newWord]) : this.state.data[key].words,
           word:
-            newWord.length == 0 || this.state.data[key].words.includes(newWord) ?
-            this.state.data[key].word : newWord,
+            addFlg ? newWord : this.state.data[key].word,
           charactor:
-            newWord.length == 0 || this.state.data[key].words.includes(newWord) ?
-              this.state.data[key].charactor : splitWord(newWord)[0],
+            addFlg ? splitWord(newWord)[0] : this.state.data[key].charactor,
           wordInput: ''
         }
       } else {
