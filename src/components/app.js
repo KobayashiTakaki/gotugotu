@@ -250,7 +250,7 @@ const Result = (props) => {
 
 const splitWord = (word) => {
   const komoji = /[ぁぃぅぇぉゃゅょァィゥェォャュョ]/
-  const muon = /[っッんンー〜]/
+  const muon = /[っッんンー〜!！?？]/
   return [...word].map((e, i, array) => {
       if(array[i].match(komoji) || array[i].match(muon)) {
         return
@@ -265,7 +265,7 @@ const splitWord = (word) => {
 }
 
 const filterKana = (string) => {
-  return string.replace(/[^ぁ-んァ-ンー〜]/g, '')
+  return string.replace(/[^ぁ-んァ-ンー〜!！?？]/g, '')
 }
 
 const resultText = (data) => {
