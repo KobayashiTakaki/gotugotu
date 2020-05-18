@@ -275,17 +275,14 @@ const resultText = (data) => {
 }
 
 const TweetButton = (props) => {
+  const text =
+    props.data[1].word + '%2B' + props.data[2].word + '%0A↓%0A' +
+    resultText(props.data) + '%0A' + window.location + '%0A%23ゴツゴツのアハン'
   return (
     <a
       target='_blank'
       rel='nofollow noopener'
-      href={
-        encodeURI(
-          'https://twitter.com/intent/tweet?text=' +
-          resultText(props.data) +
-          ' ' + window.location + '\n'
-        ) + '%23' + encodeURI('ゴツゴツのアハン')
-      }
+      href={ `https://twitter.com/intent/tweet?text=${text}` }
     >
       <i className="fab fa-twitter"></i><span>Tweet</span>
     </a>
