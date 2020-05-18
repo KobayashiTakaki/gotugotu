@@ -249,11 +249,12 @@ const Result = (props) => {
 }
 
 const splitWord = (word) => {
-  const youon = /[ぁぃぅぇぉっゃゅょァィゥェォッャュョ]/
+  const komoji = /[ぁぃぅぇぉゃゅょァィゥェォャュョ]/
+  const muon = /[っッんンー〜]/
   return [...word].map((e, i, array) => {
-      if(array[i].match(youon)) {
+      if(array[i].match(komoji) || array[i].match(muon)) {
         return
-      } else if(i == array.length - 1 || !array[i + 1].match(youon)) {
+      } else if(i == array.length - 1 || !array[i + 1].match(komoji)) {
         return e
       } else {
         return e + array[i + 1]
