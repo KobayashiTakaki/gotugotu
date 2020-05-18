@@ -195,7 +195,7 @@ class App extends React.Component {
           word:
             addFlg ? newWord : this.state.data[key].word,
           charactor:
-            addFlg ? splitWord(newWord)[0] : this.state.data[key].charactor,
+            addFlg ? charactors[0] : this.state.data[key].charactor,
           wordInput: ''
         }
       } else {
