@@ -177,7 +177,7 @@ class App extends React.Component {
     this.setState({ data: newData })
   }
 
-  handleWordSubmit(_event, updateKey) {
+  handleWordSubmit(event, updateKey) {
     event.preventDefault()
     const newData = {}
     const newWord = filterKana(this.state.data[updateKey].wordInput)
